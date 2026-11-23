@@ -1,0 +1,46 @@
+{
+    "_comment": "Pre-existing findings from the portfolio review. Counts are limited to this file and sniff. Remove entries as code is corrected.",
+    "files": {
+        "tests/check.php": {
+            "ERROR Generic.ControlStructures.InlineControlStructure.NotAllowed": 3,
+            "ERROR Generic.Files.LineEndings.InvalidEOLChar": 1,
+            "ERROR PEAR.Functions.FunctionCallSignature.CloseBracketLine": 3,
+            "ERROR PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket": 3,
+            "ERROR PEAR.Functions.FunctionCallSignature.MultipleArguments": 4,
+            "ERROR Squiz.Commenting.FileComment.Missing": 1,
+            "ERROR Squiz.Commenting.FunctionComment.Missing": 1,
+            "ERROR Squiz.Strings.DoubleQuoteUsage.NotRequired": 1,
+            "ERROR Universal.Arrays.DisallowShortArraySyntax.Found": 13,
+            "ERROR WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound": 3,
+            "ERROR WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys": 5,
+            "ERROR WordPress.DB.PreparedSQL.InterpolatedNotPrepared": 1,
+            "ERROR WordPress.PHP.YodaConditions.NotYoda": 1,
+            "ERROR WordPress.Security.EscapeOutput.ExceptionNotEscaped": 1,
+            "ERROR WordPress.Security.EscapeOutput.OutputNotEscaped": 1,
+            "ERROR WordPress.WP.GlobalVariablesOverride.Prohibited": 2,
+            "WARNING Generic.Formatting.MultipleStatementAlignment.NotSameWarning": 9,
+            "WARNING WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned": 5,
+            "WARNING WordPress.DB.DirectDatabaseQuery.DirectQuery": 7,
+            "WARNING WordPress.DB.DirectDatabaseQuery.NoCaching": 5,
+            "WARNING WordPress.DB.DirectDatabaseQuery.SchemaChange": 2
+        },
+        "woo-order-notification-outbox.php": {
+            "ERROR Generic.Files.LineEndings.InvalidEOLChar": 1,
+            "ERROR PEAR.Functions.FunctionCallSignature.CloseBracketLine": 10,
+            "ERROR PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket": 10,
+            "ERROR PEAR.Functions.FunctionCallSignature.MultipleArguments": 9,
+            "ERROR PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter": 1,
+            "ERROR Squiz.Commenting.FileComment.MissingPackageTag": 1,
+            "ERROR Squiz.Commenting.FileComment.SpacingAfterComment": 1,
+            "ERROR Squiz.Commenting.FunctionComment.Missing": 5,
+            "ERROR Universal.Arrays.DisallowShortArraySyntax.Found": 12,
+            "ERROR Universal.Operators.DisallowShortTernary.Found": 1,
+            "ERROR WordPress.Arrays.ArrayDeclarationSpacing.ArrayItemNoNewLine": 3,
+            "ERROR WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound": 3,
+            "WARNING Generic.Formatting.MultipleStatementAlignment.NotSameWarning": 13,
+            "WARNING WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned": 4,
+            "WARNING WordPress.DB.DirectDatabaseQuery.DirectQuery": 8,
+            "WARNING WordPress.DB.DirectDatabaseQuery.NoCaching": 8
+        }
+    }
+}

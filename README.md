@@ -1,5 +1,7 @@
 # WooCommerce Order Notification Outbox
 
+**What to try.** Run the WordPress fixture to see a queued order notification survive a failed delivery and retry.
+
 [![WordPress and WooCommerce integration checks](https://github.com/aa71200/woo-order-notification-outbox/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/aa71200/woo-order-notification-outbox/actions/workflows/checks.yml)
 
 If an endpoint is temporarily down, the order-processing event needs a durable delivery record and a retry. This CodexaWP sample stores a UUID for each new event and schedules delivery with Action Scheduler. Retry deadlines are 30 and 120 seconds. A periodic sweep recovers overdue rows whose action is missing. Records from before the schema upgrade keep their original idempotency key.
