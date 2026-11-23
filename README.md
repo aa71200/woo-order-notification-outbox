@@ -1,6 +1,6 @@
 # WooCommerce Order Notification Outbox
 
-A CodexaWP portfolio demo for sending an order's processing event in the background. Each order has one durable delivery record and a stable receiver idempotency key. A temporary delivery failure is retried up to twice, with 30-second and 120-second delays. Successful and failed deliveries are visible in the outbox table.
+If an endpoint is temporarily down, the order-processing event needs a durable delivery record and a retry. This CodexaWP sample sends it in the background with Action Scheduler and a stable idempotency key. Failed deliveries retry after 30 seconds and then 120 seconds, and the outbox records their result.
 
 ## Try it
 
@@ -11,6 +11,8 @@ Enable WooCommerce and set `CODEXAWP_OUTBOX_RECEIVER` to the HTTPS URL of a test
 Activate this plugin on a disposable WordPress site with WooCommerce active and `WP_ENVIRONMENT_TYPE` set to `local`. Set `CODEXAWP_TEST_WP_LOAD` to the absolute path to that site's `wp-load.php`, then run `php tests/check.php` from this repository.
 
 The fixture intercepts WordPress HTTP requests to model a temporary failure, a permanent failure and a lost response after the receiver accepted the event.
+
+In the fixture, a `503` schedules a delayed retry and the retry delivers the event. A permanent `400` records terminal failure. After a lost response, the receiver accepts the repeated delivery once. [Recorded integration output](docs/verification.txt)
 
 ## License
 
