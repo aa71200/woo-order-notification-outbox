@@ -14,6 +14,10 @@ Activate this plugin on a disposable WordPress site with WooCommerce active and 
 
 The fixture runs due Action Scheduler jobs against an intercepted test receiver. It checks temporary and permanent failures, a lost response after acceptance and recovery by the sweep after a scheduled action is removed. It waits about 31 seconds for the first retry to become due.
 
+## Queue data during an upgrade
+
+The schema change adds a nullable event ID. Existing rows and their delivery keys are retained. A direct downgrade to the original 1.0.0 delivery code is unsafe once UUID-backed events exist because that code derives a different key. For a rollback that preserves delivery identity, pause this plugin's deliveries, retain its outbox table and use a build that can still read both forms of event ID before resuming. The upgrade fixture covers pending legacy rows and completed history.
+
 In the fixture, a `503` schedules a delayed retry and the retry delivers the event. A permanent `400` records terminal failure. After a lost response, the same event is sent again and the receiver keeps a single record. [Recorded integration output](docs/verification.txt)
 
 ## License
