@@ -1,5 +1,7 @@
 # WooCommerce Order Notification Outbox
 
+[![WordPress and WooCommerce integration checks](https://github.com/aa71200/woo-order-notification-outbox/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/aa71200/woo-order-notification-outbox/actions/workflows/checks.yml)
+
 If an endpoint is temporarily down, the order-processing event needs a durable delivery record and a retry. This CodexaWP sample sends it in the background with Action Scheduler and a stable idempotency key. Failed deliveries retry after 30 seconds and then 120 seconds, and the outbox records their result.
 
 ## Try it
@@ -12,7 +14,7 @@ Activate this plugin on a disposable WordPress site with WooCommerce active and 
 
 The fixture intercepts WordPress HTTP requests to model a temporary failure, a permanent failure and a lost response after the receiver accepted the event.
 
-In the fixture, a `503` schedules a delayed retry and the retry delivers the event. A permanent `400` records terminal failure. After a lost response, the receiver accepts the repeated delivery once. [Recorded integration output](docs/verification.txt)
+In the fixture, a `503` schedules a delayed retry and the retry delivers the event. A permanent `400` records terminal failure. After a lost response, the same event is sent again and the receiver keeps a single record. [Recorded integration output](docs/verification.txt)
 
 ## License
 
