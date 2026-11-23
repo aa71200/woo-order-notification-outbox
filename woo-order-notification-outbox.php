@@ -82,7 +82,8 @@ add_action( 'woocommerce_order_status_processing', static function ( int $order_
 	$table = table();
 	$due = time();
 	$written = $wpdb->query( $wpdb->prepare(
-		"INSERT IGNORE INTO $table (order_id,event_id,state,next_at) VALUES (%d,%s,'pending',%d)",
+		"INSERT IGNORE INTO %i (order_id,event_id,state,next_at) VALUES (%d,%s,'pending',%d)",
+		$table,
 		$order_id,
 		wp_generate_uuid4(),
 		$due
@@ -98,7 +99,8 @@ add_action( SWEEP_HOOK, static function (): void {
 	global $wpdb;
 	$table = table();
 	$rows = $wpdb->get_results( $wpdb->prepare(
-		"SELECT order_id, attempts, next_at FROM $table WHERE state = 'pending' AND next_at <= %d ORDER BY next_at LIMIT 25",
+		"SELECT order_id, attempts, next_at FROM %i WHERE state = 'pending' AND next_at <= %d ORDER BY next_at, order_id LIMIT 25",
+		$table,
 		time()
 	) );
 	foreach ( $rows as $row ) {
@@ -116,7 +118,7 @@ function deliver( int $order_id, ?int $expected_attempt = null ): void {
 	}
 	try {
 		$table = table();
-		$event = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table WHERE order_id = %d", $order_id ) );
+		$event = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM %i WHERE order_id = %d', $table, $order_id ) );
 		if ( ! $event || 'pending' !== $event->state || (int) $event->next_at > time() ||
 			( null !== $expected_attempt && $expected_attempt !== (int) $event->attempts ) ) {
 			return;
