@@ -1,0 +1,6 @@
+PASS: Processing event is durable before delivery
+PASS: Action Scheduler queues delivery
+PASS: 503 schedules a delayed retry
+PASS: Retry succeeds and subsequent dispatch is ignored
+PASS: Permanent 400 records terminal failure
+PASS: Receiver deduplicates after a lost response
